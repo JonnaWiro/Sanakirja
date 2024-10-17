@@ -1,0 +1,2 @@
+# Sanakirja
+Scrum -projekti

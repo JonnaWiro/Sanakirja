@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SanakirjaDBModelStoreContainer" CdmEntityContainer="SanakirjaDBEntities">
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="SanakirjaDBModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+          <ScalarProperty Name="Kayttajatunnus" ColumnName="Kayttajatunnus" />
+          <ScalarProperty Name="Salasana" ColumnName="Salasana" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sanasto">
+      <EntityTypeMapping TypeName="SanakirjaDBModel.Sanasto">
+        <MappingFragment StoreEntitySet="Sanasto">
+          <ScalarProperty Name="SanastoId" ColumnName="SanastoId" />
+          <ScalarProperty Name="SuomiTermi" ColumnName="SuomiTermi" />
+          <ScalarProperty Name="EnglantiTermi" ColumnName="EnglantiTermi" />
+          <ScalarProperty Name="Selite" ColumnName="Selite" />
+          <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+          <ScalarProperty Name="LiittyvatTermit" ColumnName="LiittyvatTermit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

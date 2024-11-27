@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\jonna\\source\\repos\\Sanakirja\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|c:\\users\\jonna\\source\\repos\\sanakirja\\sanakirja\\models\\sanakirjamodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|solutionrelative:sanakirja\\models\\sanakirjamodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+      "AbsoluteMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|c:\\users\\jonna\\source\\repos\\sanakirja\\sanakirja\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|solutionrelative:sanakirja\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|C:\\Users\\jonna\\source\\repos\\Sanakirja\\sanakirja\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|solutionrelative:sanakirja\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|C:\\Users\\jonna\\source\\repos\\Sanakirja\\sanakirja\\models\\sanakirjamodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{072AE3C6-EE82-4EA4-858E-8D7323748337}|Sanakirja\\Sanakirja.csproj|solutionrelative:sanakirja\\models\\sanakirjamodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,27 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SanakirjaModel.edmx [Diagram1]",
               "DocumentMoniker": "C:\\Users\\jonna\\source\\repos\\Sanakirja\\Sanakirja\\Models\\SanakirjaModel.edmx",
               "RelativeDocumentMoniker": "Sanakirja\\Models\\SanakirjaModel.edmx",
               "ToolTip": "C:\\Users\\jonna\\source\\repos\\Sanakirja\\Sanakirja\\Models\\SanakirjaModel.edmx [Diagram1]",
               "RelativeToolTip": "Sanakirja\\Models\\SanakirjaModel.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2024-11-25T15:14:44.41Z",
-              "EditorCaption": " [Diagram1]"
+              "WhenOpened": "2024-11-25T15:14:44.41Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\jonna\\source\\repos\\Sanakirja\\Sanakirja\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Sanakirja\\Controllers\\HomeController.cs",
@@ -46,7 +49,8 @@
               "RelativeToolTip": "Sanakirja\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T15:44:17.207Z"
+              "WhenOpened": "2024-11-12T15:44:17.207Z",
+              "EditorCaption": ""
             }
           ]
         }

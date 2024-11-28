@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -20,6 +21,18 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <ul class="navbar-nav">
+                    @if (Session["Kayttajatunnus"] != null)
+                    {
+                        <li class="nav-item"><span class="nav-link">@Session["Kayttajatunnus"]</span></li>
+                        <li class="nav-item">@Html.ActionLink("Kirjaudu ulos", "LogOut", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">@Html.ActionLink("Kirjaudu sisään", "Index", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    
                 </ul>
             </div>
         </div>

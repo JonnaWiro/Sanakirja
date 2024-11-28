@@ -11,11 +11,16 @@ namespace Sanakirja.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Login
     {
         public int LoginId { get; set; }
+        [Required(ErrorMessage = "Anna käyttäjätunnus!")]
         public string Kayttajatunnus { get; set; }
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Anna salasana")]
         public string Salasana { get; set; }
+        public string LoginErrorMessage { get; set; }   
     }
 }

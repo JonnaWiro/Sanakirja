@@ -15,7 +15,7 @@ namespace Sanakirja.Controllers
             SanakirjaDBEntities db = new SanakirjaDBEntities();
             List<Sanasto> model = db.Sanasto.ToList();
             db.Dispose();
-            return View();
+            return View(model);
         }
     }
 }

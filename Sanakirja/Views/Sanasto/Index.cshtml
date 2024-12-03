@@ -1,7 +1,33 @@
-﻿
+﻿@model IEnumerable<Sanakirja.Models.Sanasto>
 @{
     ViewBag.Title = "Index";
 }
+<h2>Sanasto</h2>
 
-<h2>Index</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Sanasto ID</th>
+            <th>Termi suomeksi</th>
+            <th>Termi englanniksi</th>
+            <th>Selite</th>
+            <th>Linkki videoon</th>
+            <th>Liittyvät termit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Sanakirja.Models.Sanasto termi in Model)
+        {
+            <tr>
+                <td>@termi.SanastoId</td>
+                <td>@termi.SuomiTermi</td>
+                <td>@termi.EnglantiTermi</td>
+                <td>@termi.Selite</td>
+                <td>@termi.VideoLink</td>
+                <td>@termi.LiittyvatTermit</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 

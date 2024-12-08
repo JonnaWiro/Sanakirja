@@ -11,7 +11,10 @@ namespace Sanakirja.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            SanakirjaDBEntities db = new SanakirjaDBEntities();
+            List<Sanasto> model = db.Sanasto.ToList();
+            db.Dispose();
+            return View(model);
         }
 
         public ActionResult About()

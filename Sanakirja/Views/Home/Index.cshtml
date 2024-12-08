@@ -1,33 +1,62 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<Sanakirja.Models.Sanasto>
+@{
+    ViewBag.Title = "Etusivu";
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    <!--Hakupalkki-->
+    <section class="border rounded-2" id="hakupalkki" aria-labelledby="hakupalkki">
+        <br>
+        <div class="input-group col-md-12 d-flex row" align="center">
+            <div class="col-md-4 d-flex justify-content-center">
+                <input type="search" class="form-control rounded" placeholder="Hakusana">
+                <button type="button" class="btn btn-outline-primary" id="haku">Hae</button>
+            </div>
+            <div class="col-md-8 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary" id="lisaatermi">Lisää termi</button>
+            </div>
+        </div>
+        <br>
+        <!--Aakkospainikkeet-->
+        <div class="col-md-12 row" align="center">
+            <h3>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Å Ä Ö</h3>
+        </div>
+        <br>
     </section>
-
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
+    <br>
+    <!--Hakutulokset-->
+    <section class="border rounded-2" id="hakutulokset" aria-labelledby="hakutulokset">
+        <br>
+        <div class="col-md-12 row" align="center">
+            <h2>Hakutulokset</h2>
+        </div>
+        <div class="col-md-12 row" align="center">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Sanasto ID</th>
+                        <th>Termi suomeksi</th>
+                        <th>Termi englanniksi</th>
+                        <th>Selite</th>
+                        <th>Linkki videoon</th>
+                        <th>Liittyvät termit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Sanakirja.Models.Sanasto termi in Model)
+                    {
+                        <tr>
+                            <td>@termi.SanastoId</td>
+                            <td>@termi.SuomiTermi</td>
+                            <td>@termi.EnglantiTermi</td>
+                            <td>@termi.Selite</td>
+                            <td>@termi.VideoLink</td>
+                            <td>@termi.LiittyvatTermit</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </section>
 </main>

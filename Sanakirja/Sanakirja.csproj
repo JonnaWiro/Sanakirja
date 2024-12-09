@@ -230,7 +230,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Sanasto\Create.cshtml" />
-    <Content Include="Views\Sanasto\Edit.cshtml" />
+    <Content Include="Views\Sanasto\Update.cshtml" />
     <Content Include="Views\Sanasto\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>

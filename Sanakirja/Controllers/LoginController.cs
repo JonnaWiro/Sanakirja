@@ -23,7 +23,7 @@ namespace Sanakirja.Controllers
             if (LoggedUser != null)
             {
                 Session["Kayttajatunnus"] = LoggedUser.Kayttajatunnus;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Sanasto");
             }
             else
             {
@@ -34,7 +34,12 @@ namespace Sanakirja.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-            return RedirectToAction("Index", "Home"); 
+            return RedirectToAction("LoggedOut"); 
+        }
+        public ActionResult LoggedOut()
+        {
+            ViewBag.LoggedOutMessage = "Olet kirjautunut ulos järjestelmästä.";
+            return View("Index");
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Sanakirja.Controllers
         }
 
         // GET: Sanasto/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Update(int? id)
         {
             if (id == null)
             {
@@ -62,7 +62,7 @@ namespace Sanakirja.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Sanasto model)
+        public ActionResult Update(Sanasto model)
         {
             if (ModelState.IsValid)
             {

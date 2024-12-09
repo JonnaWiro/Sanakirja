@@ -4,6 +4,8 @@
 }
 <h2>Sanasto</h2>
 
+<a href="@Url.Action("Create", "Sanasto")" class="btn btn-outline-secondary">Lisää uusi termi</a>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -25,9 +27,14 @@
                 <td>@termi.Selite</td>
                 <td>@termi.VideoLink</td>
                 <td>@termi.LiittyvatTermit</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Sanasto", new { id = termi.SanastoId })" class="btn btn-secondary">Muokkaa</a> 
+                    <a href="@Url.Action("Delete", "Sanasto", new { id = termi.SanastoId })" class="btn btn-outline-secondary">Poista</a>
+                </td>
             </tr>
-        }
-    </tbody>
-</table>
+
+    }
+        </tbody>
+    </table>
 
 

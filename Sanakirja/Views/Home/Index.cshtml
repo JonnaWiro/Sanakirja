@@ -87,7 +87,18 @@
                                         <tr>
                                             <td class="col-md-5">@item.Selite</td>
                                             <td class="col-md-2">@item.LiittyvatTermit</td>
-                                            <td class="col-md-5">@item.VideoLink</td>
+                                            <td class="col-md-5">
+                                                @if (item.VideoLink != null)
+                                                {
+                                                    <div class="col-lg-5 embed-responsive embed-responsive-16by9">
+                                                        <iframe src="@item.VideoLink" width="530" height="300"
+                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                                                        </iframe>
+                                                    </div>
+                                                }
+                                                else
+                                                { @item.VideoLink }
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

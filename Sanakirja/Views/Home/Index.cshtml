@@ -59,31 +59,43 @@
             <h2>Hakutulokset</h2>
         </div>
         <div class="col-md-12 row" align="center">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Sanasto ID</th>
-                        <th>Termi suomeksi</th>
-                        <th>Termi englanniksi</th>
-                        <th>Selite</th>
-                        <th>Linkki videoon</th>
-                        <th>Liittyvät termit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Sanakirja.Models.Sanasto termi in Model)
-                    {
-                        <tr>
-                            <td>@termi.SanastoId</td>
-                            <td>@termi.SuomiTermi</td>
-                            <td>@termi.EnglantiTermi</td>
-                            <td>@termi.Selite</td>
-                            <td>@termi.VideoLink</td>
-                            <td>@termi.LiittyvatTermit</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div id="accordion">
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-bs-toggle="collapse" href="#collapse_@item.SanastoId">
+                                <form>
+                                    <div class="input-group row col-md-12">
+                                        <div class="input-group-text col-md-6"><h5>@item.SuomiTermi</h5></div>
+                                        <div class="input-group-text col-md-6"><h5>@item.EnglantiTermi</h5></div>
+                                    </div>
+                                </form>
+                            </a>
+                        </div>
+                        <div id="collapse_@item.SanastoId" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                            <div class="card-body">
+                                <table class="table table-striped col-md-12">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-5">Selite</th>
+                                            <th class="col-md-2">Liittyvät termit</th>
+                                            <th class="col-md-5">Video</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-md-5">@item.Selite</td>
+                                            <td class="col-md-2">@item.LiittyvatTermit</td>
+                                            <td class="col-md-5">@item.VideoLink</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
         <br>
     </section>

@@ -86,7 +86,20 @@
                                     <tbody>
                                         <tr>
                                             <td class="col-md-5">@item.Selite</td>
-                                            <td class="col-md-2">@item.LiittyvatTermit</td>
+                                            <td class="col-md-2">
+                                            @if (item.LiittyvatTermit != null)
+                                            {
+                                                string[] termitList = item.LiittyvatTermit.Split(',');
+                                                foreach (string i in termitList)
+                                                {
+                                                    <button type="button" id="@i">@i</button>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p>Liittyviä termejä ei lisätty.</p>
+                                            }
+                                            </td>
                                             <td class="col-md-5">
                                                 @if (item.VideoLink != null)
                                                 {

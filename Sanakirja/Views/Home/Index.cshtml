@@ -9,8 +9,12 @@
         <br>
         <div class="input-group col-md-12 d-flex row" align="center">
             <div class="col-md-4 d-flex justify-content-center">
-                <input type="search" class="form-control rounded" placeholder="Hakusana">
-                <button type="button" class="btn btn-outline-primary" id="haku">Hae</button>
+                <form method="get" action="/Home/Search">
+                    <div class="input-group">
+                        <input type="text" name="searchTerm" class="form-control rounded" placeholder="Hakusana" value="@ViewBag.SearchTerm" autocomplete="off">
+                        <button type="submit" class="btn btn-outline-primary" id="haku">Hae</button>
+                    </div>
+                </form>
             </div>
             <div class="col-md-8 d-flex justify-content-end">
                 <button type="button" class="btn btn-primary" id="lisaatermi">Lisää termi</button>
@@ -87,18 +91,18 @@
                                         <tr>
                                             <td class="col-md-5">@item.Selite</td>
                                             <td class="col-md-2">
-                                            @if (item.LiittyvatTermit != null)
-                                            {
-                                                string[] termitList = item.LiittyvatTermit.Split(',');
-                                                foreach (string i in termitList)
+                                                @if (item.LiittyvatTermit != null)
                                                 {
-                                                    <button type="button" id="@i">@i</button>
+                                                    string[] termitList = item.LiittyvatTermit.Split(',');
+                                                    foreach (string i in termitList)
+                                                    {
+                                                        <button type="button" id="@i">@i</button>
+                                                    }
                                                 }
-                                            }
-                                            else
-                                            {
-                                                <p>Liittyviä termejä ei lisätty.</p>
-                                            }
+                                                else
+                                                {
+                                                    <p>Liittyviä termejä ei lisätty.</p>
+                                                }
                                             </td>
                                             <td class="col-md-5">
                                                 @if (item.VideoLink != null)
@@ -110,7 +114,7 @@
                                                     </div>
                                                 }
                                                 else
-                                                { @item.VideoLink }
+                                                { @item.VideoLink}
                                             </td>
                                         </tr>
                                     </tbody>

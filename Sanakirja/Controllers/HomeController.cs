@@ -17,6 +17,29 @@ namespace Sanakirja.Controllers
             return View(model);
         }
 
+        //käsitellä hakukyselyä ja palauttaa tulokset
+        public ActionResult Search(string searchTerm)
+        {
+            SanakirjaDBEntities db = new SanakirjaDBEntities();
+            List<Sanasto> results = new List<Sanasto>();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                // Hae jopa 10 tulosta hakutermin perusteella
+                results = db.Sanasto
+                            .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
+                            .Take(10)
+                            .ToList();
+            }
+            else
+            {
+                results = db.Sanasto.ToList();
+            }
+            ViewBag.SearchTerm = searchTerm;
+            db.Dispose();
+            return View("Index",results);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

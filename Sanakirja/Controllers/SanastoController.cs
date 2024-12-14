@@ -11,14 +11,14 @@ namespace Sanakirja.Controllers
 {
     public class SanastoController : Controller
     {
+        SanakirjaDBEntities db = new SanakirjaDBEntities();
         // GET: Sanasto
         public ActionResult Index()
         {
-            SanakirjaDBEntities db = new SanakirjaDBEntities();
             List<Sanasto> model = db.Sanasto.ToList();
-            db.Dispose();
             return View(model);
         }
+
         // GET: Sanasto/Create
         public ActionResult Create()
         {
@@ -32,7 +32,6 @@ namespace Sanakirja.Controllers
         {
             if (ModelState.IsValid)
             {
-                SanakirjaDBEntities db = new SanakirjaDBEntities();
                 db.Sanasto.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -48,7 +47,6 @@ namespace Sanakirja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanakirjaDBEntities db = new SanakirjaDBEntities();
             Sanasto model = db.Sanasto.Find(id);
             if (model == null)
             {
@@ -66,7 +64,6 @@ namespace Sanakirja.Controllers
         {
             if (ModelState.IsValid)
             {
-                SanakirjaDBEntities db = new SanakirjaDBEntities();
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -81,7 +78,6 @@ namespace Sanakirja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanakirjaDBEntities db = new SanakirjaDBEntities();
             Sanasto model = db.Sanasto.Find(id);
             if (model == null)
             {
@@ -95,7 +91,6 @@ namespace Sanakirja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SanakirjaDBEntities db = new SanakirjaDBEntities();
             Sanasto model = db.Sanasto.Find(id);
             db.Sanasto.Remove(model);
             db.SaveChanges();
@@ -106,7 +101,6 @@ namespace Sanakirja.Controllers
         {
             if (disposing)
             {
-                SanakirjaDBEntities db = new SanakirjaDBEntities();
                 db.Dispose();
             }
             base.Dispose(disposing);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Sanakirja.Models;
 
 namespace Sanakirja.Controllers
@@ -12,17 +13,33 @@ namespace Sanakirja.Controllers
     public class SanastoController : Controller
     {
         SanakirjaDBEntities db = new SanakirjaDBEntities();
+
         // GET: Sanasto
         public ActionResult Index()
         {
-            List<Sanasto> model = db.Sanasto.ToList();
-            return View(model);
+            if (Session["Kayttajatunnus"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                List<Sanasto> model = db.Sanasto.ToList();
+                db.Dispose();
+                return View(model);
+            }
         }
 
         // GET: Sanasto/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Kayttajatunnus"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Sanasto/Create
@@ -30,29 +47,42 @@ namespace Sanakirja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Sanasto model)
         {
-            if (ModelState.IsValid)
+            if (Session["Kayttajatunnus"] == null)
             {
-                db.Sanasto.Add(model);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Login");
             }
-
-            return View(model);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Sanasto.Add(model);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(model);
+            }
         }
 
         // GET: Sanasto/Edit/5
         public ActionResult Update(int? id)
         {
-            if (id == null)
+            if (Session["Kayttajatunnus"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            Sanasto model = db.Sanasto.Find(id);
-            if (model == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Sanasto model = db.Sanasto.Find(id);
+                if (model == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(model);
             }
-            return View(model);
         }
 
         // POST: Sanasto/Edit/5
@@ -62,28 +92,42 @@ namespace Sanakirja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Update(Sanasto model)
         {
-            if (ModelState.IsValid)
+            if (Session["Kayttajatunnus"] == null)
             {
-                db.Entry(model).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Login");
             }
-            return View(model);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(model);
+            }
         }
 
         // GET: Sanasto/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["Kayttajatunnus"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            Sanasto model = db.Sanasto.Find(id);
-            if (model == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Sanasto model = db.Sanasto.Find(id);
+                if (model == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(model);
             }
-            return View(model);
         }
 
         // POST: Sanasto/Delete/5
@@ -91,10 +135,17 @@ namespace Sanakirja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Sanasto model = db.Sanasto.Find(id);
-            db.Sanasto.Remove(model);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["Kayttajatunnus"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                Sanasto model = db.Sanasto.Find(id);
+                db.Sanasto.Remove(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -4,7 +4,7 @@
     ViewBag.Title = "Login";
 }
 <h2>@ViewBag.Title</h2>
-@using (Html.BeginForm("Authorize", "Home", FormMethod.Post))
+@using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">

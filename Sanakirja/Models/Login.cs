@@ -19,7 +19,7 @@ namespace Sanakirja.Models
         [Required(ErrorMessage = "Anna käyttäjätunnus!")]
         public string Kayttajatunnus { get; set; }
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Anna salasana")]
+        [Required(ErrorMessage = "Anna salasana!")]
         public string Salasana { get; set; }
         public string LoginErrorMessage { get; set; }   
     }

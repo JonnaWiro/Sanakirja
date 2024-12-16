@@ -96,12 +96,10 @@
                                                     string[] termitList = item.LiittyvatTermit.Split(',');
                                                     foreach (string i in termitList)
                                                     {
-                                                        <button type="button" id="@i">@i</button>
+                                                        <button type="button" class="btn btn-outline-primary">
+                                                           <a href="~/Home/Search?searchTerm=@i" id="@i">@i</a>
+                                                        </button>
                                                     }
-                                                }
-                                                else
-                                                {
-                                                    <p>Liittyviä termejä ei lisätty.</p>
                                                 }
                                             </td>
                                             <td class="col-md-5">
@@ -113,8 +111,6 @@
                                                         </iframe>
                                                     </div>
                                                 }
-                                                else
-                                                { @item.VideoLink}
                                             </td>
                                         </tr>
                                     </tbody>

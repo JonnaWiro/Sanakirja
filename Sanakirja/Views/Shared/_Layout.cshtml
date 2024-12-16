@@ -18,8 +18,15 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Sanasto", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Ylläpito", "Index", "Sanasto", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (Session["Kayttajatunnus"] != null)
+                    {
+                        <li>@Html.ActionLink("Sanasto", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Ylläpito", "Index", "Sanasto", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Sanasto", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
                 </ul>
                 <ul class="navbar-nav">
                     @if (Session["Kayttajatunnus"] != null)

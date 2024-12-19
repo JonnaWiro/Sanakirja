@@ -11,12 +11,14 @@ namespace Sanakirja.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Sanasto
     {
         public int SanastoId { get; set; }
         public string SuomiTermi { get; set; }
         public string EnglantiTermi { get; set; }
+        [Required]
         public string Selite { get; set; }
         public string VideoLink { get; set; }
         public string LiittyvatTermit { get; set; }

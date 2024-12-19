@@ -16,9 +16,11 @@ namespace Sanakirja.Models
     public partial class Sanasto
     {
         public int SanastoId { get; set; }
+        [Required(ErrorMessage = "Pakollinen kenttä.")]
         public string SuomiTermi { get; set; }
+        [Required(ErrorMessage = "Pakollinen kenttä.")]
         public string EnglantiTermi { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Pakollinen kenttä.")]
         public string Selite { get; set; }
         public string VideoLink { get; set; }
         public string LiittyvatTermit { get; set; }

@@ -29,6 +29,28 @@ namespace Sanakirja.Controllers
             }
         }
 
+        public ActionResult Search(string searchTerm)
+        {
+            if (Session["Kayttajatunnus"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    var results = db.Sanasto
+                        .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
+                        .ToList();
+                    return View("Index", results);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+        }
+
         // GET: Sanasto/Create
         public ActionResult Create()
         {

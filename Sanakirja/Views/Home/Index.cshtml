@@ -20,35 +20,14 @@
         <br>
         <!--Aakkospainikkeet-->
         <div class="btn-group-horizontal" id="aakkosmenu" align="center">
-            <button type="button" id="a" class="btn btn-primary">A</button>
-            <button type="button" id="b" class="btn btn-primary">B</button>
-            <button type="button" id="c" class="btn btn-primary">C</button>
-            <button type="button" id="d" class="btn btn-primary">D</button>
-            <button type="button" id="e" class="btn btn-primary">E</button>
-            <button type="button" id="f" class="btn btn-primary">F</button>
-            <button type="button" id="g" class="btn btn-primary">G</button>
-            <button type="button" id="h" class="btn btn-primary">H</button>
-            <button type="button" id="i" class="btn btn-primary">I</button>
-            <button type="button" id="j" class="btn btn-primary">J</button>
-            <button type="button" id="k" class="btn btn-primary">K</button>
-            <button type="button" id="l" class="btn btn-primary">L</button>
-            <button type="button" id="m" class="btn btn-primary">M</button>
-            <button type="button" id="n" class="btn btn-primary">N</button>
-            <button type="button" id="o" class="btn btn-primary">O</button>
-            <button type="button" id="p" class="btn btn-primary">P</button>
-            <button type="button" id="q" class="btn btn-primary">Q</button>
-            <button type="button" id="r" class="btn btn-primary">R</button>
-            <button type="button" id="s" class="btn btn-primary">S</button>
-            <button type="button" id="t" class="btn btn-primary">T</button>
-            <button type="button" id="u" class="btn btn-primary">U</button>
-            <button type="button" id="v" class="btn btn-primary">V</button>
-            <button type="button" id="w" class="btn btn-primary">W</button>
-            <button type="button" id="x" class="btn btn-primary">X</button>
-            <button type="button" id="y" class="btn btn-primary">Y</button>
-            <button type="button" id="z" class="btn btn-primary">Z</button>
-            <button type="button" id="å" class="btn btn-primary">Å</button>
-            <button type="button" id="ä" class="btn btn-primary">Ä</button>
-            <button type="button" id="ö" class="btn btn-primary">Ö</button>
+            @{string[] aakkoset = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Å", "Ä", "Ö" };
+                foreach (string a in aakkoset)
+                {
+                <button type="button" class="btn btn-outline-primary">
+                    <a href="~/Home/Search?searchTerm=@a" id="@a">@a</a>
+                </button>
+                }
+            }
         </div>
         <br>
     </section>

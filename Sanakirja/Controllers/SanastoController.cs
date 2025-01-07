@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Sanakirja.Models;
+using PagedList;
+using System.Drawing.Printing;
+using System.Web.UI;
 
 namespace Sanakirja.Controllers
 {
@@ -15,7 +18,7 @@ namespace Sanakirja.Controllers
         SanakirjaDBEntities db = new SanakirjaDBEntities();
 
         // GET: Sanasto
-        public ActionResult Index()
+        public ActionResult Index(int? page, int? pagesize)
         {
             if (Session["Kayttajatunnus"] == null)
             {
@@ -25,11 +28,13 @@ namespace Sanakirja.Controllers
             {
                 List<Sanasto> model = db.Sanasto.ToList();
                 db.Dispose();
-                return View(model);
+                int pageSize = (pagesize ?? 10);
+                int pageNumber = (page ?? 1);
+                return View(model.ToPagedList(pageNumber, pageSize));
             }
         }
 
-        public ActionResult Search(string searchTerm)
+        public ActionResult Search(string searchTerm, int? page, int? pagesize)
         {
             if (Session["Kayttajatunnus"] == null)
             {
@@ -42,7 +47,9 @@ namespace Sanakirja.Controllers
                     var results = db.Sanasto
                         .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
                         .ToList();
-                    return View("Index", results);
+                    int pageSize = (pagesize ?? 10);
+                    int pageNumber = (page ?? 1);
+                    return View("Index", results.ToPagedList(pageNumber, pageSize));
                 }
                 else
                 {

@@ -32,10 +32,9 @@ namespace Sanakirja.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                // Hae jopa 10 tulosta hakutermin perusteella
+                // Hae hakutermin perusteella
                 results = db.Sanasto
                             .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
-                            .Take(10)
                             .ToList();
             }
             else

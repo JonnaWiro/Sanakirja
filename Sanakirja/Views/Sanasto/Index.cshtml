@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Sanakirja.Models.Sanasto>
+﻿@model PagedList.IPagedList<Sanakirja.Models.Sanasto>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
     ViewBag.Title = "Index";
 }
@@ -30,21 +33,25 @@
     <tbody>
         @foreach (Sanakirja.Models.Sanasto termi in Model)
         {
-        <tr>
-            <td>@termi.SanastoId</td>
-            <td>@termi.SuomiTermi</td>
-            <td>@termi.EnglantiTermi</td>
-            <td>@termi.Selite</td>
-            <td>@termi.VideoLink</td>
-            <td>@termi.LiittyvatTermit</td>
-            <td>
-                <a href="@Url.Action("Update", "Sanasto", new { id = termi.SanastoId })" class="btn btn-secondary">Muokkaa</a>
-                <a href="@Url.Action("Delete", "Sanasto", new { id = termi.SanastoId })" class="btn btn-outline-secondary">Poista</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@termi.SanastoId</td>
+                <td>@termi.SuomiTermi</td>
+                <td>@termi.EnglantiTermi</td>
+                <td>@termi.Selite</td>
+                <td>@termi.VideoLink</td>
+                <td>@termi.LiittyvatTermit</td>
+                <td>
+                    <a href="@Url.Action("Update", "Sanasto", new { id = termi.SanastoId })" class="btn btn-secondary">Muokkaa</a>
+                    <a href="@Url.Action("Delete", "Sanasto", new { id = termi.SanastoId })" class="btn btn-outline-secondary">Poista</a>
+                </td>
+            </tr>
 
-    }
+        }
     </tbody>
 </table>
+<!--Sivutuspainikkeet-->
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter1 = ViewBag.currentFilter1 }))
 

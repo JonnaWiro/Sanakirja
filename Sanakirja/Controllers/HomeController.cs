@@ -5,24 +5,30 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Sanakirja.Models;
+using PagedList;
+using System.Drawing.Printing;
+using System.Web.UI;
 
 namespace Sanakirja.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int? page, int? pagesize)
         {
             SanakirjaDBEntities db = new SanakirjaDBEntities();
             List<Sanasto> model = db.Sanasto.ToList();
             db.Dispose();
-            return View(model);
+            int pageSize = (pagesize ?? 10);
+            int pageNumber = (page ?? 1);
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         //käsitellä hakukyselyä ja palauttaa tulokset
-        public ActionResult Search(string searchTerm)
+        public ActionResult Search(string searchTerm, int? page, int? pagesize)
         {
             SanakirjaDBEntities db = new SanakirjaDBEntities();
             List<Sanasto> results = new List<Sanasto>();
+
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
@@ -37,8 +43,11 @@ namespace Sanakirja.Controllers
                 results = db.Sanasto.ToList();
             }
             ViewBag.SearchTerm = searchTerm;
+  
             db.Dispose();
-            return View("Index",results);
+            int pageSize = (pagesize ?? 10);
+            int pageNumber = (page ?? 1);
+            return View("Index", results.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult About()

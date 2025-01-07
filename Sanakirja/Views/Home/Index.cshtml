@@ -13,7 +13,7 @@
             <div class="col-md-4 d-flex justify-content-center">
                 <form method="get" action="/Home/Search">
                     <div class="input-group">
-                        <input type="text" name="searchTerm" class="form-control rounded" placeholder="Hakusana" value="@ViewBag.SearchTerm" autocomplete="off">
+                        <input type="text" name="searchTerm" class="form-control rounded" placeholder="Hakusana" value="@ViewBag.currentFilter1" autocomplete="off">
                         <button type="submit" class="btn btn-outline-primary" id="haku">Hae</button>
                     </div>
                 </form>
@@ -22,7 +22,8 @@
         <br>
         <!--Aakkospainikkeet-->
         <div class="btn-group-horizontal" id="aakkosmenu" align="center">
-            @{string[] aakkoset = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Å", "Ä", "Ö" };
+            @{
+                string[] aakkoset = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Å", "Ä", "Ö" };
                 foreach (string a in aakkoset)
                 {
                 <button type="button" class="btn btn-outline-primary">

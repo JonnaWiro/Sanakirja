@@ -24,11 +24,24 @@ namespace Sanakirja.Controllers
         }
 
         //käsitellä hakukyselyä ja palauttaa tulokset
-        public ActionResult Search(string searchTerm, int? page, int? pagesize)
+        public ActionResult Search(string searchTerm, string currentFilter1, int? page, int? pagesize)
         {
+           
+            //Hakufiltterin laitto muistiin
+            if (searchTerm != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchTerm = currentFilter1;
+            }
+
+            ViewBag.currentFilter1 = searchTerm;
+
+            //Tietokantayhteys ja listan luonti
             SanakirjaDBEntities db = new SanakirjaDBEntities();
             List<Sanasto> results = new List<Sanasto>();
-
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
@@ -41,7 +54,7 @@ namespace Sanakirja.Controllers
             {
                 results = db.Sanasto.ToList();
             }
-            ViewBag.SearchTerm = searchTerm;
+         //  ViewBag.SearchTerm = searchTerm;
   
             db.Dispose();
             int pageSize = (pagesize ?? 10);

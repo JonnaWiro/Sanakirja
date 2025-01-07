@@ -38,8 +38,18 @@
         <div class="col-md-12 row" align="center">
             <h2>Hakutulokset</h2>
         </div>
+        <br>
         <div class="col-md-12 row" align="center">
             <div id="accordion">
+                <form>
+                    <div class="input-group row col-md-12" id="termi-otsikko">
+
+                        <div class="input-group-text col-md-6"><h5>Termi Suomeksi</h5></div>
+
+                        <div class="input-group-text col-md-6"><h5>Termi englanniksi</h5></div>
+                    </div>
+                </form>
+                
                 @foreach (var item in Model)
                 {
                     <div class="card">
@@ -47,7 +57,9 @@
                             <a class="card-link" data-bs-toggle="collapse" href="#collapse_@item.SanastoId">
                                 <form>
                                     <div class="input-group row col-md-12">
+
                                         <div class="input-group-text col-md-6"><h5>@item.SuomiTermi</h5></div>
+
                                         <div class="input-group-text col-md-6"><h5>@item.EnglantiTermi</h5></div>
                                     </div>
                                 </form>

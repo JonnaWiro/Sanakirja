@@ -18,7 +18,7 @@ namespace Sanakirja.Controllers
         SanakirjaDBEntities db = new SanakirjaDBEntities();
 
         // GET: Sanasto
-        public ActionResult Index(int? page, int? pagesize)
+        public ActionResult Index(string searchTerm, string currentFilter1, int? page, int? pagesize)
         {
             if (Session["Kayttajatunnus"] == null)
             {
@@ -26,15 +26,41 @@ namespace Sanakirja.Controllers
             }
             else
             {
-                List<Sanasto> model = db.Sanasto.ToList();
+                //Hakufiltterin laitto muistiin
+                if (searchTerm != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    searchTerm = currentFilter1;
+                }
+
+                ViewBag.currentFilter1 = searchTerm;
+
+                SanakirjaDBEntities db = new SanakirjaDBEntities();
+                List<Sanasto> results = new List<Sanasto>();
+
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    // Hae hakutermin perusteella
+                    results = db.Sanasto
+                                .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
+                                .ToList();
+                }
+                else
+                {
+                    results = db.Sanasto.ToList();
+                }
+
                 db.Dispose();
                 int pageSize = (pagesize ?? 10);
                 int pageNumber = (page ?? 1);
-                return View(model.ToPagedList(pageNumber, pageSize));
+                return View(results.ToPagedList(pageNumber, pageSize));
             }
         }
 
-        public ActionResult Search(string searchTerm, int? page, int? pagesize)
+        public ActionResult Search(string searchTerm, string currentFilter1, int? page, int? pagesize)
         {
             if (Session["Kayttajatunnus"] == null)
             {
@@ -44,9 +70,36 @@ namespace Sanakirja.Controllers
             {
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
-                    var results = db.Sanasto
-                        .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
-                        .ToList();
+                    //Hakufiltterin laitto muistiin
+                    if (searchTerm != null)
+                    {
+                        page = 1;
+                    }
+                    else
+                    {
+                        searchTerm = currentFilter1;
+                    }
+
+                    ViewBag.currentFilter1 = searchTerm;
+
+                    //Tietokantayhteys ja listan luonti
+                    SanakirjaDBEntities db = new SanakirjaDBEntities();
+                    List<Sanasto> results = new List<Sanasto>();
+
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        // Hae hakutermin perusteella
+                        results = db.Sanasto
+                                    .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
+                                    .ToList();
+                    }
+                    else
+                    {
+                        results = db.Sanasto.ToList();
+                    }
+                    //  ViewBag.SearchTerm = searchTerm;
+
+                    db.Dispose();
                     int pageSize = (pagesize ?? 10);
                     int pageNumber = (page ?? 1);
                     return View("Index", results.ToPagedList(pageNumber, pageSize));

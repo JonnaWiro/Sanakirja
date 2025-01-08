@@ -13,14 +13,39 @@ namespace Sanakirja.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(int? page, int? pagesize)
+        public ActionResult Index(string searchTerm, string currentFilter1, int? page, int? pagesize)
         {
+            //Hakufiltterin laitto muistiin
+            if (searchTerm != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchTerm = currentFilter1;
+            }
+
+            ViewBag.currentFilter1 = searchTerm;
+
             SanakirjaDBEntities db = new SanakirjaDBEntities();
-            List<Sanasto> model = db.Sanasto.ToList();
+            List<Sanasto> results = new List<Sanasto>();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                // Hae hakutermin perusteella
+                results = db.Sanasto
+                            .Where(s => s.SuomiTermi.StartsWith(searchTerm) || s.EnglantiTermi.StartsWith(searchTerm))
+                            .ToList();
+            }
+            else
+            {
+                results = db.Sanasto.ToList();
+            }
+
             db.Dispose();
             int pageSize = (pagesize ?? 10);
             int pageNumber = (page ?? 1);
-            return View(model.ToPagedList(pageNumber, pageSize));
+            return View(results.ToPagedList(pageNumber, pageSize));
         }
 
         //käsitellä hakukyselyä ja palauttaa tulokset

@@ -8,7 +8,7 @@
 <main>
     <!--Hakupalkki-->
     <section class="border rounded-2" id="hakupalkki" aria-labelledby="hakupalkki">
-        <br>
+    <br>  
         <div class="input-group col-md-12 d-flex row" align="center">
             <div class="col-md-4 d-flex justify-content-center">
                 <form method="get" action="/Home/Search">
@@ -39,19 +39,17 @@
     <section class="border rounded-2" id="hakutulokset" aria-labelledby="hakutulokset">
         <br>
         <div class="col-md-12 row" align="center">
-            <h2>Hakutulokset</h2>
+            <h4>Hakutulokset</h4>
         </div>
         <br>
         <div class="col-md-12 row" align="center">
             <div id="accordion">
-                <form>
-                    <div class="input-group row col-md-12" id="termi-otsikko">
+                    <div class="input-group row" id="termi-otsikko">
 
                         <div class="input-group-text col-md-6"><h5>Termi Suomeksi</h5></div>
 
                         <div class="input-group-text col-md-6"><h5>Termi englanniksi</h5></div>
                     </div>
-                </form>
                 @foreach (var item in Model)
                 {
                     <div class="card">
@@ -60,9 +58,9 @@
                                 <form>
                                     <div class="input-group row col-md-12">
 
-                                        <div class="input-group-text col-md-6"><h5>@item.SuomiTermi</h5></div>
+                                        <div class="input-group-text col-md-6"><h7>@item.SuomiTermi</h7></div>
 
-                                        <div class="input-group-text col-md-6"><h5>@item.EnglantiTermi</h5></div>
+                                        <div class="input-group-text col-md-6"><h7>@item.EnglantiTermi</h7></div>
                                     </div>
                                 </form>
                             </a>
@@ -111,11 +109,9 @@
                 }
             </div>
         </div>
-        <br>
         <!--Sivutuspainikkeet-->
-        <br />
+        <br>
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter1 = ViewBag.currentFilter1 }))
     </section>
 </main>
